@@ -79,6 +79,9 @@ EOF
 
 rm -f $WEBROOT/files/cache/*
 
+# tweak permissions
+chmod 640 $WEBROOT/config/site.php
+
 # stop services
 /etc/init.d/mysql stop
 /etc/init.d/apache2 stop
