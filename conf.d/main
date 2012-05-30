@@ -20,3 +20,8 @@ chown -R www-data:www-data $WEBROOT/files
 chown -R www-data:www-data $WEBROOT/config
 chown -R www-data:www-data $WEBROOT/packages
 
+# configure apache
+a2dissite default
+a2ensite concrete5
+a2enmod rewrite
+
