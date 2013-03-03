@@ -12,9 +12,9 @@ SRC=/usr/local/src
 WEBROOT=/var/www/concrete5
 
 # unpack and configure permissions
-unzip $SRC/concrete5.*.zip -d $(dirname $WEBROOT)
+unzip $SRC/concrete5.zip -d $(dirname $WEBROOT)
 mv $(dirname $WEBROOT)/concrete5.* $WEBROOT
-rm $SRC/concrete5.*.zip
+rm $SRC/concrete5.zip
 chown -R root:root $WEBROOT
 chown -R www-data:www-data $WEBROOT/files
 chown -R www-data:www-data $WEBROOT/config
@@ -47,6 +47,7 @@ $CURL ${URL}configure/ --data "locale=&SITE=TurnKey+Concrete5&uEmail=$EMAIL&uPas
 $CURL ${URL}run_routine/standard/make_directories/
 $CURL ${URL}run_routine/standard/install_database/
 $CURL ${URL}run_routine/standard/add_users/
+$CURL ${URL}run_routine/standard/install_permissions/
 $CURL ${URL}run_routine/standard/add_home_page/
 $CURL ${URL}run_routine/standard/install_attributes/
 $CURL ${URL}run_routine/standard/install_blocktypes/
@@ -77,7 +78,7 @@ RewriteRule . index.php [L]
 </IfModule>
 EOF
 
-rm -f $WEBROOT/files/cache/*
+rm -rf $WEBROOT/files/cache/*
 
 # tweak permissions
 chmod 640 $WEBROOT/config/site.php
