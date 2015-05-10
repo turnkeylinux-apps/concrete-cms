@@ -16,8 +16,8 @@ unzip $SRC/concrete5.zip -d $(dirname $WEBROOT)
 mv $(dirname $WEBROOT)/concrete5.* $WEBROOT
 rm $SRC/concrete5.zip
 chown -R root:root $WEBROOT
-chown -R www-data:www-data $WEBROOT/files
-chown -R www-data:www-data $WEBROOT/config
+chown -R www-data:www-data $WEBROOT/application/files
+chown -R www-data:www-data $WEBROOT/application/config
 chown -R www-data:www-data $WEBROOT/packages
 
 # configure apache
@@ -38,34 +38,37 @@ $MYSQL_BATCH --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost
 
 # curl based install
 EMAIL=$(echo $ADMIN_MAIL | sed s/@/%40/)
-URL="http://127.0.0.1/index.php/install/-/"
+URL="http://127.0.0.1/index.php/install/"
 CURL="curl -c /tmp/cookie -b /tmp/cookie"
 
-$CURL ${URL}setup/ --data "locale=&install=Continue+to+Installation"
-$CURL ${URL}configure/ --data "locale=&SITE=TurnKey+Concrete5&uEmail=$EMAIL&uPassword=$ADMIN_PASS&uPasswordConfirm=$ADMIN_PASS&DB_SERVER=localhost&DB_USERNAME=$DB_USER&DB_PASSWORD=$DB_PASS&DB_DATABASE=$DB_NAME&SAMPLE_CONTENT=standard&submit=Install+concrete5"
+$CURL ${URL}setup/ --data "locale=en_US"
+$CURL ${URL}configure/ --data "locale=en_US&SITE=TurnKey+Concrete5&uEmail=$EMAIL&uPassword=$ADMIN_PASS&uPasswordConfirm=$ADMIN_PASS&DB_SERVER=localhost&DB_USERNAME=$DB_USER&DB_PASSWORD=$DB_PASS&DB_DATABASE=$DB_NAME&SAMPLE_CONTENT=elemental_full"
 
-$CURL ${URL}run_routine/standard/make_directories/
-$CURL ${URL}run_routine/standard/install_database/
-$CURL ${URL}run_routine/standard/add_users/
-$CURL ${URL}run_routine/standard/install_permissions/
-$CURL ${URL}run_routine/standard/add_home_page/
-$CURL ${URL}run_routine/standard/install_attributes/
-$CURL ${URL}run_routine/standard/install_blocktypes/
-$CURL ${URL}run_routine/standard/install_themes/
-$CURL ${URL}run_routine/standard/install_jobs/
-$CURL ${URL}run_routine/standard/install_dashboard/
-$CURL ${URL}run_routine/standard/install_required_single_pages/
-$CURL ${URL}run_routine/standard/install_config/
-$CURL ${URL}run_routine/standard/import_files/
-$CURL ${URL}run_routine/standard/install_content/
-$CURL ${URL}run_routine/standard/set_site_permissions/
-$CURL ${URL}run_routine/standard/precache/
-$CURL ${URL}run_routine/standard/finish/
+$CURL ${URL}run_routine/elemental_full/make_directories
+$CURL ${URL}run_routine/elemental_full/install_database/
+$CURL ${URL}run_routine/elemental_full/add_users/
+$CURL ${URL}run_routine/elemental_full/install_permissions/
+$CURL ${URL}run_routine/elemental_full/add_home_page/
+$CURL ${URL}run_routine/elemental_full/install_attributes/
+$CURL ${URL}run_routine/elemental_full/install_blocktypes/
+$CURL ${URL}run_routine/elemental_full/install_gathering/
+$CURL ${URL}run_routine/elemental_full/install_page_types/
+$CURL ${URL}run_routine/elemental_full/install_themes/
+$CURL ${URL}run_routine/elemental_full/install_jobs/
+$CURL ${URL}run_routine/elemental_full/install_dashboard/
+$CURL ${URL}run_routine/elemental_full/install_required_single_pages/
+$CURL ${URL}run_routine/elemental_full/install_image_editor/
+$CURL ${URL}run_routine/elemental_full/install_config/
+$CURL ${URL}run_routine/elemental_full/import_files/
+$CURL ${URL}run_routine/elemental_full/install_content/
+$CURL ${URL}run_routine/elemental_full/set_site_permissions/
+#$CURL ${URL}run_routine/elemental_full/precache/
+$CURL ${URL}run_routine/elemental_full/finish/
 
 rm -f /tmp/cookie
 
 # configure pretty urls
-$MYSQL_BATCH --database=$DB_NAME --execute "INSERT INTO Config VALUES ('URL_REWRITING', '2012-05-30 08:17:32', '1', '0', '0');"
+#$MYSQL_BATCH --database=$DB_NAME --execute "INSERT INTO Config VALUES ('URL_REWRITING', '2012-05-30 08:17:32', '1', '0', '0');"
 
 cat >$WEBROOT/.htaccess<<EOF
 <IfModule mod_rewrite.c>
@@ -78,10 +81,10 @@ RewriteRule . index.php [L]
 </IfModule>
 EOF
 
-rm -rf $WEBROOT/files/cache/*
+rm -rf $WEBROOT/application/files/cache/*
 
 # tweak permissions
-chmod 640 $WEBROOT/config/site.php
+#chmod 640 $WEBROOT/application/config/site.php
 
 # stop services
 /etc/init.d/mysql stop
