@@ -10,6 +10,7 @@ Option:
 import re
 import sys
 import getopt
+import inithooks_cache
 import hashlib
 
 from dialog_wrapper import Dialog
@@ -53,6 +54,8 @@ def main():
             "Concrete5 Email",
             "Enter email address for the Concrete5 'admin' account.",
             "admin@example.com")
+
+    inithooks_cache.write('APP_EMAIL', email)
 
     salt = ''
     config = '/var/www/concrete5/config/site.php'
