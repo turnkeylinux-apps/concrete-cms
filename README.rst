@@ -29,5 +29,5 @@ Credentials *(passwords set at first boot)*
 
 
 .. _Concrete5: http://www.concrete5.org/
-.. _TurnKey Core: http://www.turnkeylinux.org/core
+.. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Adminer: http://www.adminer.org/
