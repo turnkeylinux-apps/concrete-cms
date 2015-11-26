@@ -7,11 +7,10 @@ Option:
 
 """
 
-import re
 import sys
 import getopt
 import inithooks_cache
-import hashlib
+import bcrypt
 
 from dialog_wrapper import Dialog
 from mysqlconf import MySQL
@@ -57,19 +56,8 @@ def main():
 
     inithooks_cache.write('APP_EMAIL', email)
 
-    salt = ''
-    config = '/var/www/concrete5/config/site.php'
-    for s in file(config).readlines():
-        s = s.strip()
-        m = re.match("define\('PASSWORD_SALT', '(.*)'\);", s)
-        if m:
-            salt = m.group(1)
-            break
-
-    if not salt:
-        usage("Could not identify salt from: %s" % config)
-
-    hashpass = hashlib.md5(':'.join([password, salt])).hexdigest()
+    salt = bcrypt.gensalt()
+    hashpass = bcrypt.hashpw(password, salt)
 
     m = MySQL()
     m.execute('UPDATE concrete5.Users SET uPassword=\"%s\" WHERE uName=\"admin\";' % hashpass)
