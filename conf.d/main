@@ -20,8 +20,8 @@ rm $SRC/concrete5.zip
 a2dissite 000-default
 a2ensite concrete5
 a2enmod rewrite
-sed -i 's/memory_limit =.*/memory_limit = 64M/' /etc/php5/apache2/php.ini
-sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php5/cli/php.ini
+sed -i 's/memory_limit =.*/memory_limit = 64M/' /etc/php/7.0/apache2/php.ini
+sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.0/cli/php.ini
 
 # start services
 service mysql start
