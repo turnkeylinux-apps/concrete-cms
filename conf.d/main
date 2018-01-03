@@ -20,7 +20,7 @@ rm $SRC/concrete5.zip
 a2dissite 000-default
 a2ensite concrete5
 a2enmod rewrite
-sed -i 's/memory_limit =.*/memory_limit = 64M/' /etc/php/7.0/apache2/php.ini
+sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.0/apache2/php.ini
 sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.0/cli/php.ini
 
 # start services
@@ -59,7 +59,7 @@ chown -R www-data:www-data $WEBROOT/packages
 rm -rf $WEBROOT/application/files/cache/*
 
 # tweak permissions
-#chmod 640 $WEBROOT/application/config/site.php
+chown www-data:www-data -R $WEBROOT/updates
 
 # stop services
 service mysql stop
