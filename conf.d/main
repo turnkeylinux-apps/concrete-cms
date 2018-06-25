@@ -36,7 +36,7 @@ $MYSQL_BATCH --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost
 
 /var/www/concrete5/concrete/bin/concrete5 c5:install \
     --db-server=localhost --db-username=$DB_USER --db-password=$DB_PASS \
-    --db-database=$DB_NAME --site="Turnkey Concrete5" \
+    --db-database=$DB_NAME --site="Turnkey Concrete5" --allow-as-root \
     --starting-point=elemental_full --admin-email=$ADMIN_MAIL --admin-password=$ADMIN_PASS
 
 cat >$WEBROOT/.htaccess<<EOF
