@@ -14,6 +14,10 @@ and on top of that:
    
    - Installed from upstream source code to /var/www/concrete5
 
+     **Security note**: Updates to Concrete5 may require supervision so
+     they **ARE NOT** configured to install automatically. See `Concrete5
+     documentation`_ for upgrading.
+
 - SSL support out of the box.
 - `Adminer`_ administration frontend for MySQL (listening on port
   12322 - uses SSL).
@@ -29,6 +33,7 @@ Credentials *(passwords set at first boot)*
 - Concrete5: username **admin**
 
 
-.. _Concrete5: http://www.concrete5.org/
+.. _Concrete5: https://www.concrete5.org/
 .. _TurnKey Core: https://www.turnkeylinux.org/core
-.. _Adminer: http://www.adminer.org/
+.. _Concrete5 documentation: https://documentation.concrete5.org/developers/installation/upgrading-concrete5
+.. _Adminer: https://www.adminer.org/
