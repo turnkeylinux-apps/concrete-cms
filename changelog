@@ -2,6 +2,9 @@ turnkey-concrete5-15.1 (1) turnkey; urgency=low
 
   * Upgraded Concrete5 to 8.4.3
 
+  * Rebuild to resolve inadvertant removal of mariadb during sec-updates
+    - part of #1246.
+
  -- Stefan Davis <stefan@turnkeylinux.org>  Wed, 21 Nov 2018 02:03:20 +1000
 
 turnkey-concrete5-15.0 (1) turnkey; urgency=low
