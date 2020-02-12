@@ -11,6 +11,9 @@ ADMIN_MAIL=admin@example.com
 SRC=/usr/local/src
 WEBROOT=/var/www/concrete5
 
+apt update
+apt install -y python3-bcrypt
+
 # unpack
 unzip $SRC/concrete5.zip -d $(dirname $WEBROOT)
 mv $(dirname $WEBROOT)/concrete5-* $WEBROOT
@@ -20,8 +23,8 @@ rm $SRC/concrete5.zip
 a2dissite 000-default
 a2ensite concrete5
 a2enmod rewrite
-sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.0/apache2/php.ini
-sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.0/cli/php.ini
+sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.3/apache2/php.ini
+sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.3/cli/php.ini
 
 # start services
 service mysql start
