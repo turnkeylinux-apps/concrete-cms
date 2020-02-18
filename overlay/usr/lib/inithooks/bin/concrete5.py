@@ -58,11 +58,10 @@ def main():
 
     salt = bcrypt.gensalt()
     hashpass = bcrypt.hashpw(password.encode('utf8'), salt).decode('utf8')
-    print('hashpass: %s' % hashpass)
 
     m = MySQL()
-    m.execute('UPDATE concrete5.Users SET uPassword=\"%s\" WHERE uName=\"admin\";' % hashpass)
-    m.execute('UPDATE concrete5.Users SET uEmail=\"%s\" WHERE uName=\"admin\";' % email)
+    m.execute('UPDATE concrete5.Users SET uPassword=%s WHERE uName="admin";', (hashpass,))
+    m.execute('UPDATE concrete5.Users SET uEmail=%s WHERE uName="admin";', (email,))
 
 if __name__ == "__main__":
     main()
