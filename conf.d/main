@@ -11,9 +11,6 @@ ADMIN_MAIL=admin@example.com
 SRC=/usr/local/src
 WEBROOT=/var/www/concrete5
 
-apt update
-apt install -y python3-bcrypt
-
 # unpack
 unzip $SRC/concrete5.zip -d $(dirname $WEBROOT)
 mv $(dirname $WEBROOT)/concrete5-* $WEBROOT

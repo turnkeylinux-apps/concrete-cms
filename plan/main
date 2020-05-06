@@ -9,6 +9,4 @@ php-mbstring
 
 unzip
 
-// workaround https://github.com/turnkeylinux/tracker/issues/1388
-//python3-bcrypt
-
+python3-bcrypt
