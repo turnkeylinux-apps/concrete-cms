@@ -10,3 +10,4 @@ php-mbstring
 unzip
 
 python3-bcrypt
+patch           /* Composer install requirement */
