@@ -14,7 +14,14 @@ WEBROOT=/var/www/concrete5
 mkdir -p $WEBROOT
 chown -R www-data:www-data $WEBROOT
 cd $(dirname $WEBROOT)
-turnkey-composer create-project -n concrete5/composer --prefer-source $(basename $WEBROOT)
+turnkey-composer create-project -n concrete5/composer --prefer-source --no-dev $(basename $WEBROOT)
+
+# for some reason, these patches aren't being applied?!
+VENDOR=$WEBROOT/vendor
+patch $VENDOR/sunra/php-simple-html-dom-parser/Src/Sunra/PhpSimple/simplehtmldom_1_5/simple_html_dom.php \
+    $VENDOR/concrete5/dependency-patches/sunra/php-simple-html-dom-parser/minus-in-regular-expressions.patch
+patch $VENDOR/zendframework/zend-stdlib/src/ArrayObject.php \
+    $VENDOR/concrete5/dependency-patches/zendframework/zend-stdlib/ArrayObject-unserialize-continue.patch
 
 # configure apache
 a2dissite 000-default
@@ -31,12 +38,12 @@ service apache2 start
 mysqladmin create $DB_NAME
 mysql --batch --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
 
-/var/www/concrete5/concrete/bin/concrete5 c5:install \
+turnkey-concrete5 c5:install \
     --db-server=localhost --db-username=$DB_USER --db-password=$DB_PASS \
-    --db-database=$DB_NAME --site="Turnkey Concrete5" --allow-as-root \
+    --db-database=$DB_NAME --site=TurnKey-Concrete5 --allow-as-root \
     --starting-point=elemental_full --admin-email=$ADMIN_MAIL --admin-password=$ADMIN_PASS
 
-cat >$WEBROOT/.htaccess<<EOF
+cat >> $WEBROOT/.htaccess <<EOF
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
