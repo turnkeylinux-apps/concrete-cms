@@ -43,7 +43,7 @@ turnkey-concrete5 c5:install \
     --db-database=$DB_NAME --site=TurnKey-Concrete5 --allow-as-root \
     --starting-point=elemental_full --admin-email=$ADMIN_MAIL --admin-password=$ADMIN_PASS
 
-cat >> $WEBROOT/.htaccess <<EOF
+cat > $WEBROOT/.htaccess <<EOF
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -54,16 +54,7 @@ RewriteRule . index.php [L]
 </IfModule>
 EOF
 
-# set permissions
-chown -R root:root $WEBROOT
-chown -R www-data:www-data $WEBROOT/application/files
-chown -R www-data:www-data $WEBROOT/application/config
-chown -R www-data:www-data $WEBROOT/packages
-
 rm -rf $WEBROOT/application/files/cache/*
-
-# tweak permissions
-chown www-data:www-data -R $WEBROOT/updates
 
 # stop services
 service mysql stop
