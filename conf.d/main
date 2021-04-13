@@ -54,16 +54,7 @@ RewriteRule . index.php [L]
 </IfModule>
 EOF
 
-# set permissions
-chown -R root:root $WEBROOT
-chown -R www-data:www-data $WEBROOT/application/files
-chown -R www-data:www-data $WEBROOT/application/config
-chown -R www-data:www-data $WEBROOT/packages
-
 rm -rf $WEBROOT/application/files/cache/*
-
-# tweak permissions
-chown www-data:www-data -R $WEBROOT/updates
 
 # stop services
 service mysql stop
