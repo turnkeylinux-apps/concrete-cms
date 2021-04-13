@@ -6,7 +6,9 @@ php-cli
 php-curl
 php-xml
 php-mbstring
+php-zip
 
 unzip
 
 python3-bcrypt
+patch           /* Composer install requirement */

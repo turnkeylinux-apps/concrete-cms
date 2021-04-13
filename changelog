@@ -1,3 +1,19 @@
+turnkey-concrete5-16.1 (1) turnkey; urgency=low
+
+  * Upgraded Concrete5 to v8.5.5.
+
+  * Imstall Concrete5 via composer - closes #835.
+
+  * Include 'turnkey-composer' wrapper script - runs composer as www-data
+    user. Makes it easy to not run composer as root - part of #1539.
+
+  * Also include 'turnkey-concrete5' wrapper script.
+
+  * Note: Please refer to turnkey-core's 16.1 changelog for changes common to
+    all appliances. Here we only describe changes specific to this appliance.
+
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Wed, 31 Mar 2021 16:28:56 +1100
+
 turnkey-concrete5-16.0 (1) turnkey; urgency=low
 
   * Upgraded Concrete5 to 8.5.2.

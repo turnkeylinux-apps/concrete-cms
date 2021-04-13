@@ -1,9 +1,0 @@
-#!/bin/bash -ex
-
-# version 8.5.2
-
-URL=https://www.concrete5.org/download_file/-/view/111592/
-
-[ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
-curl -L -f $PROXY $URL -o /usr/local/src/concrete5.zip
-

@@ -12,11 +12,17 @@ and on top of that:
 
 - Concrete5 configurations:
    
-   - Installed from upstream source code to /var/www/concrete5
+   - Installed (using composer_) to /var/www/concrete5
 
      **Security note**: Updates to Concrete5 may require supervision so
      they **ARE NOT** configured to install automatically. See `Concrete5
      documentation`_ for upgrading.
+
+   - Includes concrete5_ and composer_ for command line administration,
+     configuration and development. Also includes relevant
+     wrapper scripts; turnkey-concrete5_, turnkey-composer_ (run
+     the relevant command, but as www-data user).
+
 
 - SSL support out of the box.
 - `Adminer`_ administration frontend for MySQL (listening on port
@@ -36,4 +42,8 @@ Credentials *(passwords set at first boot)*
 .. _Concrete5: https://www.concrete5.org/
 .. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Concrete5 documentation: https://documentation.concrete5.org/developers/installation/upgrading-concrete5
+.. _composer: https://getcomposer.org/
+.. _concret5: https://documentation.concrete5.org/developers/framework/console-commands-and-jobs/cli-commands
+.. _turnkey-concrete5: https://github.com/turnkeylinux-apps/concrete5/blob/master/overlay/usr/local/bin/turnkey-concrete5
+.. _turnkey-composer: https://github.com/turnkeylinux/common/blob/master/overlays/composer/usr/local/bin/turnkey-composer
 .. _Adminer: https://www.adminer.org/
