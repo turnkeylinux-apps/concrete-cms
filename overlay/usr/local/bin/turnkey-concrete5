@@ -1,9 +1,0 @@
-#!/bin/bash -e
-
-[[ -z "$DEBUG" ]] || set -x
-
-export CONCRETE5_USER="${CONCRETE5_USER:-www-data}"
-
-COMMAND="/var/www/concrete5/public/concrete/bin/concrete5 $@"
-
-runuser $CONCRETE5_USER -s /bin/bash -c "$COMMAND"
