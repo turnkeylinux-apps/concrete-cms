@@ -1,0 +1,9 @@
+#!/bin/bash -ex
+
+dl() {
+    [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
+    cd $2; curl -L -f -O $PROXY $1; cd -
+}
+
+URL='https://www.concretecms.org/application/files/4416/4305/6300/concrete-cms-9.0.2.zip'
+dl $URL /usr/local/src
