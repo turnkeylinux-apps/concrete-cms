@@ -43,7 +43,7 @@ Credentials *(passwords set at first boot)*
 .. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Concrete CMS documentation: https://documentation.concretecms.org/developers/introduction/installing-concrete-cms/upgrading-concrete
 .. _composer: https://getcomposer.org/
-.. _concrete (cli): https://documentation.concretecms.org/developers/framework/console-commands-and-jobs/cli-commands
+.. _concrete (cli): https://documentation.concretecms.org/developers/framework/console-commands-and-jobs/command-line-interface-cli-commands
 .. _turnkey-concrete: https://github.com/turnkeylinux-apps/concrete-cms/blob/master/overlay/usr/local/bin/turnkey-concrete
 .. _turnkey-composer: https://github.com/turnkeylinux/common/blob/master/overlays/composer/usr/local/bin/turnkey-composer
 .. _Adminer: https://www.adminer.org/
