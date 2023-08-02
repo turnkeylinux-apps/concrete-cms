@@ -27,8 +27,8 @@ sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.4/apache2/php.ini
 sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/7.4/cli/php.ini
 
 # start services
-service mysql start
-service apache2 start
+systemctl start mysql
+systemctl start apache2
 
 # setup the database
 mysqladmin create $DB_NAME
@@ -55,6 +55,6 @@ EOF
 rm -rf $WEBROOT/public/application/files/cache/*
 
 # stop services
-service mysql stop
-service apache2 stop
+systemctl stop mysql
+systemctl stop apache2
 

@@ -5,5 +5,5 @@ dl() {
     cd $2; curl -L -f -O $PROXY $1; cd -
 }
 
-URL='https://www.concretecms.com/application/files/3016/5350/5462/concrete-cms-9.1.1.zip'
+URL='https://www.concretecms.com/application/files/7116/8918/7686/concrete-cms-9.2.1.zip'
 dl $URL /usr/local/src
