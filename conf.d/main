@@ -23,8 +23,6 @@ mv concrete-cms-* concrete/public
 a2dissite 000-default
 a2ensite concrete
 a2enmod rewrite
-sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/8.2/apache2/php.ini
-sed -i 's/memory_limit =.*/memory_limit = 128M/' /etc/php/8.2/cli/php.ini
 
 # start services
 systemctl start mysql
