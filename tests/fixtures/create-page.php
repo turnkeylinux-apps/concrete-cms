@@ -23,7 +23,8 @@ require "$webroot/concrete/bootstrap/configure.php";
 require "$webroot/concrete/bootstrap/autoload.php";
 $app = require "$webroot/concrete/bootstrap/start.php";
 
-$parent = Page::getByPath('/');
+$site = $app->make('site')->getDefault();
+$parent = $site ? $site->getSiteHomePageObject() : null;
 $pageType = Type::getByHandle('page');
 $pageTemplate = Template::getByHandle('full');
 $blockType = BlockType::getByHandle('html');
