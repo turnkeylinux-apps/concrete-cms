@@ -124,7 +124,7 @@ grep -Fq "$page_content" "$page"
 
 grep -Fq '/usr/local/bin/turnkey-concrete concrete:scheduler:run' \
     /etc/cron.d/concrete-cms
-turnkey-concrete c5:sitemap:generate
+turnkey-concrete c5:sitemap:generate --url="$base"
 test -s /var/www/concrete/public/sitemap.xml
 grep -q '<urlset' /var/www/concrete/public/sitemap.xml
 turnkey-concrete concrete:scheduler:run
