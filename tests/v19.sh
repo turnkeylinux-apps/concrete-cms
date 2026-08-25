@@ -9,7 +9,6 @@ base=https://127.0.0.1
 cookie=/tmp/tkl-concrete-cookie.$$
 page=/tmp/tkl-concrete-page.$$
 headers=/tmp/tkl-concrete-headers.$$
-jobs=/tmp/tkl-concrete-jobs.$$
 policy=/tmp/tkl-concrete-policy.$$
 release=/tmp/tkl-concrete-release.$$
 
@@ -21,7 +20,7 @@ report_error() {
 trap 'report_error "$LINENO" "$?" "$BASH_COMMAND"' ERR
 
 cleanup() {
-    rm -f -- "$cookie" "$page" "$headers" "$jobs" "$policy" "$release"
+    rm -f -- "$cookie" "$page" "$headers" "$policy" "$release"
 }
 trap cleanup EXIT
 
@@ -125,9 +124,9 @@ grep -Fq "$page_content" "$page"
 
 grep -Fq '/usr/local/bin/turnkey-concrete concrete:scheduler:run' \
     /etc/cron.d/concrete-cms
-turnkey-concrete c5:job --list >"$jobs"
-grep -q 'generate_sitemap' "$jobs"
-turnkey-concrete c5:job generate_sitemap >>"$jobs"
+turnkey-concrete c5:sitemap:generate
+test -s /var/www/concrete/public/sitemap.xml
+grep -q '<urlset' /var/www/concrete/public/sitemap.xml
 turnkey-concrete concrete:scheduler:run
 
 curl --insecure --fail --silent --show-error \
