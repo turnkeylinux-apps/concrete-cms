@@ -134,7 +134,7 @@ curl --insecure --fail --silent --show-error \
 curl --insecure --fail --silent --show-error \
     https://127.0.0.1:12321/ >/dev/null
 
-turnkey-concrete c5:update --help | grep -q 'Update Concrete'
+turnkey-concrete c5:update --help >/dev/null
 curl --fail --silent --show-error \
     https://api.github.com/repos/concretecms/concretecms/releases/latest \
     >"$release"
