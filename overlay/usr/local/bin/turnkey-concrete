@@ -4,6 +4,5 @@
 
 export CONCRETE_USER="${CONCRETE_USER:-www-data}"
 
-COMMAND="/var/www/concrete/public/concrete/bin/concrete $@"
-
-runuser $CONCRETE_USER -s /bin/bash -c "$COMMAND"
+exec runuser -u "$CONCRETE_USER" -- \
+    /var/www/concrete/public/concrete/bin/concrete "$@"
